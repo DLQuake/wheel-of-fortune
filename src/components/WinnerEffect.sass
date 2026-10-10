@@ -1,4 +1,3 @@
-
 .winner-effect
   position: fixed
   inset: 0
@@ -7,8 +6,9 @@
   align-items: center
   justify-content: center
   padding: 20px
-  background: rgba(2, 6, 23, 0.42)
-  backdrop-filter: blur(4px)
+  background: rgba(2, 6, 23, 0.65)
+  backdrop-filter: blur(6px)
+  -webkit-backdrop-filter: blur(6px)
 
   &__card
     position: relative
@@ -39,6 +39,7 @@
     display: flex
     align-items: center
     justify-content: center
+    flex-wrap: wrap
     gap: 9px
     margin: 0 0 16px
     color: #facc15
@@ -60,6 +61,67 @@
     color: #cbd5e1
     font-size: 16px
 
+  // Główny przycisk zamykania
+  &__dismiss
+    display: inline-flex
+    align-items: center
+    justify-content: center
+    min-width: 140px
+    margin-top: 28px
+    padding: 13px 26px
+    border: 1px solid rgba(250, 204, 21, 0.6)
+    border-radius: 12px
+    background: linear-gradient(135deg, #facc15, #eab308)
+    color: #422006
+    font-family: inherit
+    font-size: 15px
+    font-weight: 800
+    cursor: pointer
+    box-shadow: 0 8px 24px rgba(234, 179, 8, 0.2)
+    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease
+
+    &:hover
+      transform: translateY(-2px)
+      filter: brightness(1.08)
+      box-shadow: 0 12px 30px rgba(234, 179, 8, 0.3)
+
+    &:active
+      transform: translateY(0) scale(0.98)
+
+    &:focus-visible
+      outline: 3px solid #fef08a
+      outline-offset: 4px
+
+  // Przycisk X w prawym górnym rogu
+  &__close
+    position: absolute
+    top: 14px
+    right: 14px
+    display: flex
+    align-items: center
+    justify-content: center
+    width: 38px
+    height: 38px
+    padding: 0
+    border: 1px solid rgba(255, 255, 255, 0.12)
+    border-radius: 50%
+    background: rgba(255, 255, 255, 0.06)
+    color: #cbd5e1
+    cursor: pointer
+    transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease
+
+    &:hover
+      background: rgba(255, 255, 255, 0.14)
+      color: #fff
+      transform: rotate(90deg)
+
+    &:active
+      transform: scale(0.94)
+
+    &:focus-visible
+      outline: 2px solid #facc15
+      outline-offset: 3px
+
 @keyframes winner-appear
   0%
     opacity: 0
@@ -80,7 +142,29 @@
   50%
     transform: rotate(5deg) scale(1.08)
 
+@media (max-width: 480px)
+  .winner-effect
+    padding: 16px
+
+    &__card
+      padding: 34px 20px
+      border-radius: 22px
+
+    &__icon
+      width: 66px
+      height: 66px
+
+    &__eyebrow
+      font-size: 10px
+      letter-spacing: 1.5px
+
+    &__dismiss
+      width: 100%
+
 @media (prefers-reduced-motion: reduce)
   .winner-effect__card,
-  .winner-effect__icon
+  .winner-effect__icon,
+  .winner-effect__dismiss,
+  .winner-effect__close
     animation: none
+    transition: none

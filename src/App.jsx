@@ -1,6 +1,5 @@
-
 import { useState } from 'react'
-import { Sparkles, Trophy, Settings2 } from 'lucide-react'
+import { Sparkles, Settings2 } from 'lucide-react'
 
 import Wheel from './components/Wheel'
 import SpinButton from './components/SpinButton'
@@ -23,6 +22,7 @@ function App() {
     resetItems,
     spin,
     finishSpin,
+    clearWinner,
   } = useWheel()
 
   return (
@@ -35,9 +35,7 @@ function App() {
 
           <div>
             <h1 className="app__title">Wheel of Fortune</h1>
-            <p className="app__subtitle">
-              Let fate decide
-            </p>
+            <p className="app__subtitle">Let fate decide</p>
           </div>
         </div>
 
@@ -83,24 +81,6 @@ function App() {
               : 'Click the button to spin the wheel'}
           </p>
         </div>
-
-        {winner && (
-          <div className="app__result" aria-live="polite">
-            <div className="app__result-icon">
-              <Trophy size={20} />
-            </div>
-
-            <div>
-              <p className="app__result-label">
-                The winner is
-              </p>
-
-              <h2 className="app__result-name">
-                {winner}
-              </h2>
-            </div>
-          </div>
-        )}
       </section>
 
       <footer className="app__footer">
@@ -119,7 +99,10 @@ function App() {
         disabled={spinning}
       />
 
-      <WinnerEffect winner={winner} />
+      <WinnerEffect
+        winner={winner}
+        onClose={clearWinner}
+      />
     </main>
   )
 }

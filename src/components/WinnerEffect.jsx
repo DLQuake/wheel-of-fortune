@@ -1,9 +1,9 @@
 import { useEffect } from 'react'
 import confetti from 'canvas-confetti'
-import { Trophy, Sparkles } from 'lucide-react'
+import { Trophy, Sparkles, X } from 'lucide-react'
 import './WinnerEffect.sass'
 
-export default function WinnerEffect({ winner }) {
+export default function WinnerEffect({ winner, onClose }) {
   useEffect(() => {
     if (!winner) return
 
@@ -53,8 +53,22 @@ export default function WinnerEffect({ winner }) {
   if (!winner) return null
 
   return (
-    <div className="winner-effect" role="dialog" aria-live="polite">
+    <div
+      className="winner-effect"
+      role="dialog"
+      aria-modal="true"
+      aria-live="polite"
+    >
       <div className="winner-effect__card">
+        <button
+          type="button"
+          className="winner-effect__close"
+          onClick={onClose}
+          aria-label="Zamknij okno zwycięzcy"
+        >
+          <X size={20} />
+        </button>
+
         <div className="winner-effect__icon">
           <Trophy size={32} />
         </div>
@@ -73,8 +87,8 @@ export default function WinnerEffect({ winner }) {
 
         <button
           type="button"
-          className="winner-effect__close"
-          onClick={() => window.location.reload()}
+          className="winner-effect__dismiss"
+          onClick={onClose}
         >
           Zamknij
         </button>

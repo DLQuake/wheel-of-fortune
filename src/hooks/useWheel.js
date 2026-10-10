@@ -1,4 +1,3 @@
-
 import { useEffect, useRef, useState } from 'react'
 
 const STORAGE_KEY = 'wheel-of-fortune-settings'
@@ -23,9 +22,11 @@ function loadItems() {
 
       if (
         Array.isArray(parsed) &&
-        parsed.length > 0 &&
+        parsed.length >= 2 &&
+        parsed.length <= 20 &&
         parsed.every(
           (item) =>
+            item &&
             typeof item.id === 'string' &&
             typeof item.label === 'string' &&
             typeof item.color === 'string' &&
@@ -39,7 +40,7 @@ function loadItems() {
     // W razie błędu użyj domyślnych ustawień.
   }
 
-  return DEFAULT_ITEMS
+  return DEFAULT_ITEMS.map((item) => ({ ...item }))
 }
 
 export default function useWheel() {
@@ -54,20 +55,25 @@ export default function useWheel() {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(items))
     } catch {
-      // Aplikacja nadal działa, jeśli zapis jest niedostępny.
+      // Aplikacja działa również bez możliwości zapisu.
     }
   }, [items])
 
   const addItem = () => {
-    if (spinning || items.length >= 20) return false
+    if (spinning || items.length >= 20) {
+      return false
+    }
 
     const item = {
       id: crypto.randomUUID(),
       label: `Option ${items.length + 1}`,
-      color: DEFAULT_ITEMS[items.length % DEFAULT_ITEMS.length].color,
+      color: DEFAULT_ITEMS[
+        items.length % DEFAULT_ITEMS.length
+      ].color,
     }
 
     setItems((current) => [...current, item])
+
     return true
   }
 
@@ -76,7 +82,9 @@ export default function useWheel() {
 
     setItems((current) =>
       current.map((item) =>
-        item.id === id ? { ...item, ...changes } : item,
+        item.id === id
+          ? { ...item, ...changes }
+          : item,
       ),
     )
   }
@@ -94,6 +102,7 @@ export default function useWheel() {
 
     setItems(DEFAULT_ITEMS.map((item) => ({ ...item })))
     setWinner(null)
+    pendingWinner.current = null
     setRotation(0)
   }
 
@@ -106,14 +115,17 @@ export default function useWheel() {
     const targetAngle =
       (360 - (index + 0.5) * sliceAngle) % 360
 
-    const currentAngle = ((rotation % 360) + 360) % 360
+    const currentAngle =
+      ((rotation % 360) + 360) % 360
 
     const delta =
       (targetAngle - currentAngle + 360) % 360
 
-    const extraTurns = 5 + Math.floor(Math.random() * 3)
+    const extraTurns =
+      5 + Math.floor(Math.random() * 3)
 
     pendingWinner.current = items[index]
+
     setWinner(null)
     setSpinning(true)
 
@@ -123,11 +135,15 @@ export default function useWheel() {
   }
 
   const finishSpin = () => {
-    if (!spinning || !pendingWinner.current) return
-  
+    if (!pendingWinner.current) return
+
     setWinner(pendingWinner.current.label)
     pendingWinner.current = null
     setSpinning(false)
+  }
+
+  const clearWinner = () => {
+    setWinner(null)
   }
 
   return {
@@ -137,6 +153,7 @@ export default function useWheel() {
     winner,
     spin,
     finishSpin,
+    clearWinner,
     addItem,
     updateItem,
     removeItem,
