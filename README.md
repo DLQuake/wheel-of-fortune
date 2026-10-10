@@ -9,7 +9,7 @@ A customizable interactive spinning wheel that makes decision-making simple and 
 - Customize the color of each option
 - Automatically save settings using local storage
 - Animated winner popup with confetti effects
-- Responsive layout for desktop and mobile devices
+- Responsive design for desktop and mobile devices
 - Reset options to restore the default configuration
 
 ## Built With
@@ -58,7 +58,7 @@ Open the local URL displayed in your terminal.
 npm run build
 ```
 
-Preview the production build locally:
+To preview the production build locally:
 
 ```bash
 npm run preview
@@ -70,8 +70,4 @@ npm run preview
 - Classroom activities and quizzes
 - Games and giveaways
 - Choosing rewards or challenges
-- Team activities
-
-## License
-
-Add a license to the repository if you want to specify the terms for reuse.
+- Team activities and icebreakers
