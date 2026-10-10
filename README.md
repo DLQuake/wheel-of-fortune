@@ -1,16 +1,77 @@
-# React + Vite
+# Wheel of Fortune
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A customizable interactive spinning wheel that makes decision-making simple and fun. Add your own options, customize their colors, spin the wheel, and celebrate the result with an animated winner popup and confetti.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Interactive spinning wheel with random winner selection
+- Add, edit, and remove options
+- Customize the color of each option
+- Automatically save settings using local storage
+- Animated winner popup with confetti effects
+- Responsive layout for desktop and mobile devices
+- Reset options to restore the default configuration
 
-## React Compiler
+## Built With
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React
+- Vite
+- JavaScript
+- Sass
+- Motion
+- Lucide React
+- Canvas Confetti
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Prerequisites
+
+- Node.js
+- npm
+
+### Installation
+
+Clone the repository:
+
+```bash
+git clone YOUR_REPOSITORY_URL
+cd wheel-of-fortune
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start the development server:
+
+```bash
+npm run dev
+```
+
+Open the local URL displayed in your terminal.
+
+### Build for Production
+
+```bash
+npm run build
+```
+
+Preview the production build locally:
+
+```bash
+npm run preview
+```
+
+## Use Cases
+
+- Making random decisions
+- Classroom activities and quizzes
+- Games and giveaways
+- Choosing rewards or challenges
+- Team activities
+
+## License
+
+Add a license to the repository if you want to specify the terms for reuse.
