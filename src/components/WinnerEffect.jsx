@@ -64,7 +64,7 @@ export default function WinnerEffect({ winner, onClose }) {
           type="button"
           className="winner-effect__close"
           onClick={onClose}
-          aria-label="Zamknij okno zwycięzcy"
+          aria-label="Close winner dialog"
         >
           <X size={20} />
         </button>
@@ -75,14 +75,14 @@ export default function WinnerEffect({ winner, onClose }) {
 
         <p className="winner-effect__eyebrow">
           <Sparkles size={16} />
-          MAMY ZWYCIĘZCĘ!
+          WE HAVE A WINNER!
           <Sparkles size={16} />
         </p>
 
         <h2 className="winner-effect__name">{winner}</h2>
 
         <p className="winner-effect__message">
-          Gratulacje! 🎉
+          Congratulations!
         </p>
 
         <button
@@ -90,7 +90,7 @@ export default function WinnerEffect({ winner, onClose }) {
           className="winner-effect__dismiss"
           onClick={onClose}
         >
-          Zamknij
+          Close
         </button>
       </div>
     </div>
