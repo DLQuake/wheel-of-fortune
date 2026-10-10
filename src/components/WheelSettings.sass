@@ -1,0 +1,267 @@
+
+.settings-overlay
+  position: fixed
+  inset: 0
+  z-index: 100
+  display: flex
+  align-items: center
+  justify-content: center
+  padding: 20px
+  background: rgba(2, 6, 23, 0.78)
+  backdrop-filter: blur(8px)
+  overflow-y: auto
+
+.settings-modal
+  width: 100%
+  max-width: 560px
+  max-height: min(760px, 90vh)
+  display: flex
+  flex-direction: column
+  padding: 24px
+  border: 1px solid rgba(255, 255, 255, 0.1)
+  border-radius: 22px
+  background: #151c30
+  color: #f8fafc
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45)
+
+  &__header
+    display: flex
+    align-items: flex-start
+    justify-content: space-between
+    gap: 16px
+    padding-bottom: 24px
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08)
+
+  &__heading
+    display: flex
+    align-items: center
+    gap: 14px
+
+    h2
+      margin: 0
+      font-size: 21px
+
+    p
+      margin: 6px 0 0
+      color: #94a3b8
+      font-size: 13px
+
+  &__icon
+    display: grid
+    place-items: center
+    width: 44px
+    height: 44px
+    flex-shrink: 0
+    border-radius: 13px
+    background: rgba(139, 92, 246, 0.15)
+    color: #c4b5fd
+
+  &__close
+    display: grid
+    place-items: center
+    width: 38px
+    height: 38px
+    flex-shrink: 0
+    border: 1px solid rgba(255, 255, 255, 0.08)
+    border-radius: 10px
+    background: transparent
+    color: #94a3b8
+    cursor: pointer
+
+    &:hover
+      background: rgba(255, 255, 255, 0.08)
+      color: #ffffff
+
+  &__summary
+    display: flex
+    justify-content: space-between
+    align-items: center
+    padding: 20px 0 12px
+    font-size: 13px
+    font-weight: 700
+
+  &__count
+    color: #a78bfa
+
+  &__list
+    display: flex
+    flex-direction: column
+    gap: 9px
+    overflow-y: auto
+    min-height: 0
+    padding: 2px 4px 8px 0
+
+  &__actions
+    display: flex
+    align-items: center
+    justify-content: space-between
+    gap: 12px
+    padding: 16px 0
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08)
+
+  &__add,
+  &__reset,
+  &__done
+    display: inline-flex
+    align-items: center
+    justify-content: center
+    gap: 8px
+    min-height: 42px
+    padding: 0 14px
+    border: 1px solid transparent
+    border-radius: 10px
+    font-size: 13px
+    font-weight: 700
+    cursor: pointer
+    transition: background 0.2s ease, opacity 0.2s ease
+
+    &:disabled
+      opacity: 0.4
+      cursor: not-allowed
+
+  &__add
+    background: rgba(139, 92, 246, 0.15)
+    color: #c4b5fd
+
+    &:hover:not(:disabled)
+      background: rgba(139, 92, 246, 0.25)
+
+  &__reset
+    background: transparent
+    border-color: rgba(255, 255, 255, 0.12)
+    color: #cbd5e1
+
+    &:hover:not(:disabled)
+      background: rgba(255, 255, 255, 0.06)
+
+  &__footer
+    display: flex
+    align-items: center
+    justify-content: space-between
+    gap: 12px
+    padding-top: 18px
+
+    span
+      color: #94a3b8
+      font-size: 11px
+
+  &__done
+    min-width: 86px
+    background: #7c3aed
+    color: #ffffff
+
+    &:hover
+      background: #6d28d9
+
+.segment-row
+  display: grid
+  grid-template-columns: 28px minmax(0, 1fr) 38px 38px
+  align-items: center
+  gap: 9px
+  padding: 9px
+  border: 1px solid rgba(255, 255, 255, 0.07)
+  border-radius: 12px
+  background: rgba(255, 255, 255, 0.025)
+
+  &__number
+    color: #64748b
+    font-size: 11px
+    font-weight: 800
+    text-align: center
+
+  &__name
+    width: 100%
+    min-width: 0
+    height: 38px
+    padding: 0 10px
+    border: 1px solid rgba(255, 255, 255, 0.1)
+    border-radius: 8px
+    outline: none
+    background: #0f172a
+    color: #f8fafc
+    font-size: 13px
+
+    &:focus
+      border-color: #8b5cf6
+
+    &:disabled
+      opacity: 0.6
+
+  &__color
+    width: 38px
+    height: 38px
+    padding: 4px
+    border: 1px solid rgba(255, 255, 255, 0.12)
+    border-radius: 9px
+    background: #0f172a
+    cursor: pointer
+
+    &::-webkit-color-swatch-wrapper
+      padding: 0
+
+    &::-webkit-color-swatch
+      border: none
+      border-radius: 5px
+
+  &__remove
+    display: grid
+    place-items: center
+    width: 38px
+    height: 38px
+    border: 1px solid transparent
+    border-radius: 9px
+    background: transparent
+    color: #94a3b8
+    cursor: pointer
+
+    &:hover:not(:disabled)
+      background: rgba(239, 68, 68, 0.12)
+      color: #f87171
+
+    &:disabled
+      opacity: 0.25
+      cursor: not-allowed
+
+@media (max-width: 480px)
+  .settings-overlay
+    padding: 10px
+
+  .settings-modal
+    max-height: 94vh
+    padding: 16px
+    border-radius: 17px
+
+    &__heading
+      gap: 10px
+
+      h2
+        font-size: 18px
+
+      p
+        font-size: 11px
+
+    &__icon
+      width: 38px
+      height: 38px
+
+    &__footer
+      align-items: flex-start
+
+      span
+        max-width: 190px
+        line-height: 1.5
+
+  .segment-row
+    grid-template-columns: 22px minmax(0, 1fr) 34px 34px
+    gap: 6px
+    padding: 7px
+
+    &__color,
+    &__remove
+      width: 34px
+      height: 34px
+
+    &__name
+      height: 36px
+      padding: 0 7px
+      font-size: 12px
