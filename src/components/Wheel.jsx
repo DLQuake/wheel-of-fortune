@@ -1,4 +1,3 @@
-
 import { motion } from 'motion/react'
 import './Wheel.sass'
 
@@ -35,6 +34,7 @@ function createSegment(index, total) {
 export default function Wheel({
   items,
   rotation,
+  onRotationChange,
   onAnimationComplete,
 }) {
   const slice = 360 / items.length
@@ -47,8 +47,11 @@ export default function Wheel({
         className="wheel__rotator"
         animate={{ rotate: rotation }}
         transition={{
-          duration: 4.5,
-          ease: [0.12, 0.75, 0.15, 1],
+          duration: 7,
+          ease: [0.1, 0.05, 0.2, 1],
+        }}
+        onUpdate={(latest) => {
+          onRotationChange?.(latest.rotate)
         }}
         onAnimationComplete={onAnimationComplete}
       >

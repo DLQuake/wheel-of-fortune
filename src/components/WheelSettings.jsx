@@ -121,6 +121,25 @@ export default function WheelSettings({
                   })
                 }
               />
+              <input
+                className="segment-row__weight"
+                type="number"
+                min="0.1"
+                max="100"
+                step="0.1"
+                value={item.weight ?? 1}
+                aria-label={`Segment ${index + 1} weight`}
+                title="Weight — higher values increase the chance of winning"
+                disabled={disabled}
+                onChange={(event) =>
+                  onUpdate(item.id, {
+                    weight: Math.max(
+                      0.1,
+                      Math.min(100, Number(event.target.value) || 0.1),
+                    ),
+                  })
+                }
+              />
 
               <button
                 type="button"

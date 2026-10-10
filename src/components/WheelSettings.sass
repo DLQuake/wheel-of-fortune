@@ -1,4 +1,8 @@
 
+/* ========================================
+   SETTINGS MODAL
+   ======================================== */
+
 .settings-overlay
   position: fixed
   inset: 0
@@ -6,45 +10,52 @@
   display: flex
   align-items: center
   justify-content: center
-  padding: 20px
-  background: rgba(2, 6, 23, 0.78)
+  padding: 16px
+  background: rgba(0, 0, 0, 0.78)
   backdrop-filter: blur(8px)
   overflow-y: auto
+  overscroll-behavior: contain
 
 .settings-modal
-  width: 100%
-  max-width: 560px
-  max-height: min(760px, 90vh)
   display: flex
   flex-direction: column
+  width: 100%
+  max-width: 560px
+  max-height: calc(100dvh - 32px)
+  min-height: 0
   padding: 24px
+  overflow: hidden
   border: 1px solid rgba(255, 255, 255, 0.1)
   border-radius: 22px
-  background: #151c30
-  color: #f8fafc
+  background: var(--ui-surface, #151c30)
+  color: var(--ui-text, #f8fafc)
   box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45)
 
   &__header
     display: flex
     align-items: flex-start
     justify-content: space-between
-    gap: 16px
-    padding-bottom: 24px
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08)
+    gap: 12px
+    flex: 0 0 auto
+    padding-bottom: 20px
+    border-bottom: 1px solid var(--ui-border, rgba(255, 255, 255, 0.08))
 
   &__heading
     display: flex
     align-items: center
     gap: 14px
+    min-width: 0
 
     h2
       margin: 0
       font-size: 21px
+      overflow-wrap: anywhere
 
     p
       margin: 6px 0 0
-      color: #94a3b8
+      color: var(--ui-muted, #94a3b8)
       font-size: 13px
+      line-height: 1.5
 
   &__icon
     display: grid
@@ -62,42 +73,52 @@
     width: 38px
     height: 38px
     flex-shrink: 0
-    border: 1px solid rgba(255, 255, 255, 0.08)
+    border: 1px solid var(--ui-border, rgba(255, 255, 255, 0.08))
     border-radius: 10px
     background: transparent
-    color: #94a3b8
+    color: var(--ui-muted, #94a3b8)
     cursor: pointer
 
     &:hover
-      background: rgba(255, 255, 255, 0.08)
-      color: #ffffff
+      background: var(--ui-item, rgba(255, 255, 255, 0.08))
+      color: var(--ui-text, #ffffff)
 
   &__summary
     display: flex
-    justify-content: space-between
     align-items: center
-    padding: 20px 0 12px
+    justify-content: space-between
+    gap: 12px
+    flex: 0 0 auto
+    padding: 18px 0 12px
     font-size: 13px
     font-weight: 700
 
   &__count
     color: #a78bfa
+    white-space: nowrap
 
+  // Główny obszar przewijania
   &__list
     display: flex
+    flex: 1 1 auto
     flex-direction: column
     gap: 9px
-    overflow-y: auto
     min-height: 0
-    padding: 2px 4px 8px 0
+    overflow-x: hidden
+    overflow-y: auto
+    padding: 2px 5px 10px 0
+    overscroll-behavior: contain
+    scrollbar-gutter: stable
 
   &__actions
     display: flex
+    flex: 0 0 auto
     align-items: center
     justify-content: space-between
-    gap: 12px
+    flex-wrap: wrap
+    gap: 10px
     padding: 16px 0
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08)
+    border-bottom: 1px solid var(--ui-border, rgba(255, 255, 255, 0.08))
 
   &__add,
   &__reset,
@@ -107,6 +128,7 @@
     justify-content: center
     gap: 8px
     min-height: 42px
+    max-width: 100%
     padding: 0 14px
     border: 1px solid transparent
     border-radius: 10px
@@ -127,44 +149,55 @@
       background: rgba(139, 92, 246, 0.25)
 
   &__reset
+    border-color: var(--ui-border, rgba(255, 255, 255, 0.12))
     background: transparent
-    border-color: rgba(255, 255, 255, 0.12)
-    color: #cbd5e1
+    color: var(--ui-text, #cbd5e1)
 
     &:hover:not(:disabled)
-      background: rgba(255, 255, 255, 0.06)
+      background: var(--ui-item, rgba(255, 255, 255, 0.06))
 
   &__footer
     display: flex
+    flex: 0 0 auto
     align-items: center
     justify-content: space-between
     gap: 12px
     padding-top: 18px
 
     span
-      color: #94a3b8
+      min-width: 0
+      color: var(--ui-muted, #94a3b8)
       font-size: 11px
+      line-height: 1.5
 
   &__done
     min-width: 86px
+    flex-shrink: 0
     background: #7c3aed
     color: #ffffff
 
-    &:hover
+    &:hover:not(:disabled)
       background: #6d28d9
 
+
+/* ========================================
+   SEGMENT ROW — FLEX
+   ======================================== */
+
 .segment-row
-  display: grid
-  grid-template-columns: 28px minmax(0, 1fr) 38px 38px
+  display: flex
   align-items: center
-  gap: 9px
+  gap: 8px
+  width: 100%
+  min-width: 0
   padding: 9px
-  border: 1px solid rgba(255, 255, 255, 0.07)
+  border: 1px solid var(--ui-border, rgba(255, 255, 255, 0.07))
   border-radius: 12px
-  background: rgba(255, 255, 255, 0.025)
+  background: var(--ui-item, rgba(255, 255, 255, 0.025))
 
   &__number
-    color: #64748b
+    flex: 0 0 24px
+    color: var(--ui-muted, #64748b)
     font-size: 11px
     font-weight: 800
     text-align: center
@@ -172,14 +205,14 @@
   &__name
     width: 100%
     min-width: 0
-    height: 38px
-    padding: 0 10px
-    border: 1px solid rgba(255, 255, 255, 0.1)
+    height: 36px
+    padding: 0 8px
+    border: 1px solid var(--ui-border, rgba(255, 255, 255, 0.1))
     border-radius: 8px
     outline: none
-    background: #0f172a
-    color: #f8fafc
-    font-size: 13px
+    background: var(--ui-input, #0f172a)
+    color: var(--ui-text, #f8fafc)
+    font-size: 12px
 
     &:focus
       border-color: #8b5cf6
@@ -188,12 +221,15 @@
       opacity: 0.6
 
   &__color
-    width: 38px
-    height: 38px
+    display: block
+    flex: 0 0 34px
+    width: 34px
+    height: 36px
+    min-width: 0
     padding: 4px
-    border: 1px solid rgba(255, 255, 255, 0.12)
+    border: 1px solid var(--ui-border, rgba(255, 255, 255, 0.12))
     border-radius: 9px
-    background: #0f172a
+    background: var(--ui-input, #0f172a)
     cursor: pointer
 
     &::-webkit-color-swatch-wrapper
@@ -203,15 +239,39 @@
       border: none
       border-radius: 5px
 
+  &__weight
+    flex: 0 0 44px
+    width: 44px
+    min-width: 0
+    height: 36px
+    padding: 0 3px
+    border: 1px solid var(--ui-border, rgba(255, 255, 255, 0.12))
+    border-radius: 9px
+    background: var(--ui-input, #0f172a)
+    color: var(--ui-text, #f8fafc)
+    font-size: 12px
+    text-align: center
+    outline: none
+
+    &:focus
+      border-color: #8b5cf6
+
+    &:disabled
+      opacity: 0.5
+      cursor: not-allowed
+
   &__remove
     display: grid
     place-items: center
-    width: 38px
-    height: 38px
+    flex: 0 0 34px
+    width: 34px
+    height: 36px
+    min-width: 0
+    padding: 0
     border: 1px solid transparent
     border-radius: 9px
     background: transparent
-    color: #94a3b8
+    color: var(--ui-muted, #94a3b8)
     cursor: pointer
 
     &:hover:not(:disabled)
@@ -222,17 +282,86 @@
       opacity: 0.25
       cursor: not-allowed
 
-@media (max-width: 480px)
-  .settings-overlay
-    padding: 10px
 
+/* ========================================
+   LIGHT THEME
+   ======================================== */
+
+:root[data-theme='light']
   .settings-modal
-    max-height: 94vh
-    padding: 16px
-    border-radius: 17px
+    border-color: #e2e8f0
+    background: #ffffff
+    color: #1e293b
+
+    &__header,
+    &__actions
+      border-color: #e2e8f0
 
     &__heading
-      gap: 10px
+      p
+        color: #64748b
+
+    &__close
+      border-color: #e2e8f0
+      color: #64748b
+
+      &:hover
+        background: #f1f5f9
+        color: #1e293b
+
+    &__reset
+      border-color: #e2e8f0
+      color: #334155
+
+      &:hover:not(:disabled)
+        background: #f1f5f9
+
+    &__footer
+      span
+        color: #64748b
+
+  .segment-row
+    border-color: #e2e8f0
+    background: #f8fafc
+
+    &__number
+      color: #64748b
+
+    &__name,
+    &__color,
+    &__weight
+      border-color: #cbd5e1
+      background: #ffffff
+      color: #1e293b
+
+    &__remove
+      color: #64748b
+
+      &:hover:not(:disabled)
+        background: #fee2e2
+        color: #dc2626
+
+
+/* ========================================
+   RESPONSIVE — TABLET / MOBILE
+   ======================================== */
+
+@media (max-width: 480px)
+  .settings-overlay
+    align-items: center
+    padding: 8px
+
+  .settings-modal
+    max-height: calc(100dvh - 16px)
+    padding: 15px
+    border-radius: 17px
+
+    &__header
+      gap: 8px
+      padding-bottom: 16px
+
+    &__heading
+      gap: 9px
 
       h2
         font-size: 18px
@@ -241,27 +370,115 @@
         font-size: 11px
 
     &__icon
-      width: 38px
-      height: 38px
+      width: 36px
+      height: 36px
+
+    &__summary
+      padding-top: 14px
+
+    &__actions
+      gap: 8px
+      padding: 12px 0
+
+    &__add,
+    &__reset
+      min-height: 38px
+      padding: 0 10px
+      font-size: 12px
 
     &__footer
-      align-items: flex-start
+      align-items: center
+      gap: 8px
+      padding-top: 14px
 
       span
-        max-width: 190px
-        line-height: 1.5
+        font-size: 10px
+
+    &__done
+      min-width: 74px
+      min-height: 38px
+      padding: 0 12px
 
   .segment-row
-    grid-template-columns: 22px minmax(0, 1fr) 34px 34px
-    gap: 6px
-    padding: 7px
+    gap: 5px
+    padding: 6px
 
-    &__color,
-    &__remove
-      width: 34px
-      height: 34px
+    &__number
+      flex-basis: 18px
 
     &__name
-      height: 36px
-      padding: 0 7px
-      font-size: 12px
+      flex: 1 1 120px
+      width: 120px
+      height: 34px
+      padding: 0 6px
+      font-size: 11px
+
+    &__color
+      flex-basis: 30px
+      width: 30px
+      height: 32px
+      padding: 3px
+
+    &__weight
+      flex-basis: 38px
+      width: 38px
+      height: 32px
+      padding: 0 2px
+      font-size: 11px
+
+    &__remove
+      flex-basis: 30px
+      width: 30px
+      height: 32px
+
+
+/* ========================================
+   SMALL MOBILE
+   ======================================== */
+
+@media (max-width: 360px)
+  .settings-modal
+    padding: 11px
+
+    &__heading
+      h2
+        font-size: 16px
+
+    &__actions
+      align-items: stretch
+
+    &__add,
+    &__reset
+      flex: 1 1 auto
+
+  .segment-row
+    gap: 3px
+    padding: 5px
+
+    &__number
+      flex-basis: 16px
+      font-size: 10px
+
+    &__name
+      flex: 1 1 80px
+      width: 80px
+      height: 32px
+      padding: 0 4px
+      font-size: 10px
+
+    &__color
+      flex-basis: 27px
+      width: 27px
+      height: 30px
+      padding: 2px
+
+    &__weight
+      flex-basis: 34px
+      width: 34px
+      height: 30px
+      font-size: 10px
+
+    &__remove
+      flex-basis: 27px
+      width: 27px
+      height: 30px
